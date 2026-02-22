@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vixon | Terminal_Access</title>
+    <style>
+        /* Terminal Styling */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #0a0a0a; /* Deep black */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            overflow: hidden; /* Prevents scrollbars for that full-screen app feel */
+        }
+
+        .terminal-window {
+            width: 100%;
+            max-width: 800px;
+            height: 500px;
+            background-color: #000;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.2);
+            border: 1px solid #333;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Top Bar of the Terminal */
+        .terminal-header {
+            background: #222;
+            padding: 10px 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 8px;
+        }
+
+        .dot { width: 12px; height: 12px; border-radius: 50%; }
+        .red { background: #ff5f56; }
+        .yellow { background: #ffbd2e; }
+        .green { background: #27c93f; }
+
+        .title {
+            color: #aaa;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 13px;
+        }
+
+        /* The actual console area */
+        .terminal-body {
+            padding: 20px;
+            color: #00ff41; /* Classic Matrix Green */
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 16px;
+            line-height: 1.5;
+            overflow-y: auto;
+            flex-grow: 1;
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 10px;
+            height: 20px;
+            background: #00ff41;
+            margin-left: 5px;
+            animation: blink 1s infinite;
+            vertical-align: middle;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        .command { color: #fff; } /* Commands look white for contrast */
+        .output { color: #00ff41; margin-bottom: 10px; }
+        .prompt { color: #00ccff; } /* User prompt color (like Kali) */
+
+    </style>
+</head>
+<body>
+
+    <div class="terminal-window">
+        <div class="terminal-header">
+            <div class="buttons">
+                <div class="dot red"></div>
+                <div class="dot yellow"></div>
+                <div class="dot green"></div>
+            </div>
+            <div class="title">vixon@kali: ~</div>
+        </div>
+        
+        <div class="terminal-body">
+            <div class="output">Last login: Sat Feb 21 23:45:01 on ttys001</div>
+            
+            <div class="line">
+                <span class="prompt">vixon@kali:~$</span> <span class="command">nmap -sV 192.168.1.1</span>
+            </div>
+            <div class="output">
+                Starting Nmap 7.92 ( https://nmap.org ) at 2026-02-21 23:46<br>
+                Nmap scan report for gateway (192.168.1.1)<br>
+                PORT   STATE SERVICE VERSION<br>
+                80/tcp open  http    Apache httpd 2.4.41<br>
+                Done.
+            </div>
+
+            <div class="line">
+                <span class="prompt">vixon@kali:~$</span> <span class="command">whoami</span>
+            </div>
+            <div class="output">emmanuel_ngugi</div>
+
+            <div class="line">
+                <span class="prompt">vixon@kali:~$</span> <span class="command">system_status --check</span><span class="cursor"></span>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
